@@ -1,16 +1,18 @@
 const axios = require('axios');
-const {Recipe, Diet} = require('../db')
+const {Recipe, Diet, recipeXdiet} = require('../db')
 
 const getApiRecipes = async () =>{
-    const recipes = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=66c3e30a343f4847b4c7a2e5112aabbe&addRecipeInformation=true&number=100');
+    const recipes = await axios.get('https://api.spoonacular.com/recipes/complexSearch?apiKey=9ec0dfdf3cd64af28fa9c3a72075c73e&addRecipeInformation=true&number=100');
     const apiInfo = await recipes.data.results.map(el => {
         return {
         name: el.title,
         summary: el.summary,
         healthScore: el.healthScore,
-        instructions: el.analyzedInstructions.map(e => e),
+        instructions: el.analyzedInstructions[0],
         diets: el.diets.map(e => e),
-        id: el.id
+        id: el.id,
+        image: el.image,
+        score: el.spoonacularScore,
         }
     })
     return apiInfo;
@@ -18,25 +20,36 @@ const getApiRecipes = async () =>{
 
 
 
-const getDBRecipes = async () =>{
-    return await Recipe.findAll({
-        include: {
-            model: Diet,
-            attributes: ['name'],
-            through: {
-                attributes:[]
-            }
+const getDbRecipes = async () => {
+    const fixedDbInfo = await Recipe.findAll({include: Diet})
+    const fixedDbInfo2 = fixedDbInfo.map(e => {
+        const diets = [];
+        for (let i = 0; i < e.dataValues.Diets.length; i++) {           
+            diets.push(e.dataValues.Diets[i].dataValues.name) 
+            console.log(e.dataValues.Diets[i])
+        }
+        return{
+            id: e.dataValues.id,
+            name: e.dataValues.name,
+            summary: e.dataValues.summary,
+            score: e.dataValues.score,
+            healthScore: e.dataValues.healthScore,
+            instructions: e.dataValues.instructions,
+            createdInDb: e.createdInDb,
+            image: e.image,
+            diets: diets, 
         }
     })
-
+    return fixedDbInfo2;
 }
 
 const allInfo = async () => {
     const apiInfo = await getApiRecipes();
-    const dbInfo = await getDBRecipes();
+    const dbInfo = await getDbRecipes();
     const allInfo = apiInfo.concat(dbInfo);
     return allInfo;
 }
+
 
 
 
@@ -44,46 +57,82 @@ const getApiDiets = async () => {
     const allRecipes = await getApiRecipes();
     const arrDeArr = await allRecipes.map(el => el.diets);
     let arrFinal = arrDeArr.flat();
-    console.log(arrFinal);
     return arrFinal.map(e => {return {name: e}});
 }
-getApiDiets()
 
-const postNewRecipe = async (name, summary, score, healthScore, instructions) => {
-    if(!name || !summary || !score || !healthScore || !instructions) throw new Error('Faltan argumentos');
-    await Recipe.create({
+const getAllDiets = async () => {
+    const fixedDbInfo = await Diet.findAll()
+    const fixedDiets = fixedDbInfo.map(e => {
+        const diets = [];
+        diets.push(e.dataValues.name)
+        return diets;
+    })
+    const diets = fixedDiets.flat()
+    return diets;
+}
+
+
+
+const postNewRecipe = async (name, summary, score, healthScore, instructions, diet, image) => {
+    if(!name || !summary || !score || !healthScore || !instructions ) throw new Error('Faltan argumentos');
+    const newRecipe = await Recipe.create({
         name: name,
         summary: summary,
         score: score,
         healthScore: healthScore,
-        instructions: instructions
+        instructions: instructions,
+        image: image
+    })
+    const diets = await Diet.findAll({
+        where: {
+            name: diet 
+        }
+    })
+    newRecipe.addDiet(diets);
+}
+
+// await jane.update({ name: "Ada" })
+
+
+const updateRecipe = async (id, name, summary, score, healthScore, instructions, diet, image) =>{
+    if(!id) throw new Error('Falta id.');
+
+    let recipe = await Recipe.findByPk(id)
+
+    const diets = await Diet.findAll({
+        where: {
+            name: diet 
+        }
+    })
+
+    await recipe.update({
+        name,
+        summary,
+        score,
+        healthScore,
+        instructions,
+        diet: diets,
+        image,
     })
 }
 
+const deleteRecipe = async (id) => {
+    if(!id) throw new Error('Falta id.');
 
+    await Recipe.destroy({
+        where: {id: id}
+    })
 
-
-
-
-
-// diets.forEach(async (element) => {
-//     await Diet.findOrCreate({
-//         where: {
-//             name: element,
-//         },
-//         defaults: {
-//             name: element
-//         }
-//     })
-// });
-
-
+}
 
 module.exports= {
     getApiRecipes,
-    getDBRecipes,
+    getDbRecipes,
     allInfo,
     getApiDiets,
-    postNewRecipe
+    postNewRecipe,
+    getAllDiets,
+    deleteRecipe,
+    updateRecipe
 
 }

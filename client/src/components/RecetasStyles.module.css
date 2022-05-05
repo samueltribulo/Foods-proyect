@@ -1,0 +1,38 @@
+
+
+.conteiner{
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url("./images/Fondo2.jpg");
+    background-size: cover;
+    height: 100vh;
+    display: inline flex;
+    flex-direction: row;
+    text-shadow: 0 0 20px gold;
+    color: #EAE0C8;
+    text-decoration: none;
+    }
+
+.conteiner2{
+    margin-left: 150px;
+    margin-right: 150px;
+    top: 2vh;
+    display: flex;
+    flex-direction: row;
+    flex-wrap: wrap;
+    justify-content: space-around;
+    align-items: center;
+    overflow-y: auto;
+    height: 80vh;
+    position: relative;
+    border-top: 3px solid #EAE0C8;
+}
+
+.Buscador{
+    position: relative;
+}
+.divPagination{
+    margin-left: 10px;
+    margin-right: 10px ;
+    background-color: transparent;
+    position: relative;
+    top: 1vh;
+}

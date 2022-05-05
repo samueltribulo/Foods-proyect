@@ -1,0 +1,17 @@
+
+
+.divNav{
+    display: flex;
+    justify-content: space-around;
+    background-color: transparent;
+}
+
+.spansCreateAndHome{
+    padding: 6px;
+    font-size: 40px;
+    transition: .5s;
+}
+
+a:hover{
+    color: gold;
+}

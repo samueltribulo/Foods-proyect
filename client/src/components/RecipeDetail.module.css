@@ -1,0 +1,91 @@
+.divNav{
+    border: 3px solid #EAE0C8;
+    border-radius: 20px;
+    position: relative;
+    top: 0.5vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+    color: #EAE0C8;
+    text-shadow: 0 0 20px gold;
+}
+
+.divNav :hover{
+    transition: .5s;
+    color: gold;
+}
+
+.conteinerDelete{
+    display: flex;
+    justify-content: end;
+}
+
+.btnDelete{
+    background-color: transparent;
+    font-size: 20px;
+    color: #EAE0C8;
+    border: 2px solid #EAE0C8;
+    border-radius: 10px;
+}
+
+.conteiner{
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url("./images/Fondo2.jpg");
+    background-size: cover;
+    height: 100vh;
+}
+
+.conteiner2{
+    position: relative;
+    display: flex;
+    justify-content: center;
+    text-align: justify;
+    font-size: 18px;
+}
+
+.conteiner2 h3{
+    text-align: center;
+    color: #EAE0C8;
+    text-shadow: 0 0 20px gold;
+}
+.conteiner2 label{
+    background-color: black;
+    padding: 3px;
+    border-radius: 20px;
+}
+
+.conteiner2 div, span{
+    word-wrap: break-word;
+}
+
+.conteiner3{
+    color: #EAE0C8;
+    position: relative;
+    top: 3vh;
+    max-width: 900px;
+    max-height: 900px;
+    border: 2px solid #EAE0C8;
+    border-radius: 20px;
+    padding: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+
+
+}
+
+.imageDiv{
+    display: flex;
+}
+
+.imageDiv img{
+    max-width: 400px;
+}
+
+.details{
+    display: flex;
+    flex-direction: column;
+    justify-content: space-around;
+    margin: 10px;
+}
+
+.details label{
+    display: inline;
+}

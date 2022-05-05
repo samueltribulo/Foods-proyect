@@ -1,0 +1,39 @@
+.divRecetaCard{
+    display: inline block;
+    width: 400px;
+    height: 400px;
+    background-color: rgba(0, 0, 0, 0.7);
+    border-radius: 20px;
+    margin: 20px 0;
+    border: 2px solid #EAE0C8;
+    margin: 50px;
+    transition: .5s;
+
+}
+.divRecetaCard :hover{
+    opacity: 1;
+}
+
+.btnRecargar{
+    background-color: transparent;
+    font-size: 20px;
+    color: #EAE0C8;
+    border: 2px solid #EAE0C8;
+    border-radius: 10px;
+}
+
+a{
+    text-decoration: none;
+    color: #EAE0C8;
+}
+
+img{
+max-width: 300px;
+max-height: 222px;
+margin: 10px;
+border-radius: 20px;
+}
+
+.divInfo{
+    margin: 10px;
+}

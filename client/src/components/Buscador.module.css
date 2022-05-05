@@ -1,0 +1,43 @@
+.conteiner{
+    border: 3px solid #EAE0C8;
+    border-radius: 20px;
+    position: relative;
+    top: .5vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    background-color: rgba(0, 0, 0, 0.7);
+}
+
+.divNav{
+    margin: 10px;
+    padding: 10px;
+    border-bottom: 1px solid #EAE0C8;
+}
+
+.conteiner2{
+    margin: 10px;
+    display: flex;
+    flex-direction: row;
+    justify-content: space-around;
+}
+
+.conteiner2 select{
+    background-color: transparent;
+    font-size: 20px;
+    color: #EAE0C8;
+    border: 2px solid #EAE0C8;
+    border-radius: 10px;
+}
+
+.conteiner2 select option{
+    background-color: black;
+    opacity: 0.2;
+}
+
+.formConteiner input{
+    background-color: transparent;
+    font-size: 20px;
+    color: #EAE0C8;
+    border: 2px solid #EAE0C8;
+    border-radius: 10px;
+}

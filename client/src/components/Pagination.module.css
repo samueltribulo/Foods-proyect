@@ -1,0 +1,26 @@
+.conteiner{
+    display: flex;
+    justify-content: center;
+}
+
+.conteiner2{
+    max-width: 500px;
+    display: flex;
+    justify-content: space-between;
+}
+
+.btnPag{
+    background-color: transparent;
+    color: #EAE0C8;
+    margin: 5px;
+    font-size: 20px;
+    border-radius: 15px;
+    border: 2px solid #EAE0C8;
+}
+
+.btnPagCurrent{
+    background-color: grey;
+}
+.btnPag button:hover{
+    color: gold;
+}

@@ -1,5 +1,5 @@
 const { Router } = require('express');
-const {recipesByQuery, recipeByID, recipePost} = require('./rutas');
+const {recipesByQuery, recipeByID, recipePost, dbDiets, deleteOneRecipe, dbUpdate} = require('./rutas');
 const {getApiDiets} = require('./utils');
 const {Diet, Recipe} = require('../db')
 
@@ -14,9 +14,17 @@ const router = Router();
 // Ejemplo: router.use('/auth', authRouter);
 router.get('/recipes', recipesByQuery);
 
+router.put('/recipes/:idRecipe', dbUpdate);
+
+router.delete('/recipes/:idRecipe', deleteOneRecipe)
+
 router.get('/recipes/:idRecipe', recipeByID);
 
+router.get('/diets', dbDiets);
+
 router.post('/recipes', recipePost);
+
+
 
 (async () => {
     let preDiets = ['gluten free', 'ketogenic', 'vegetarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'pescatarian', 'paleo', 'primal', 'low FODMAP', 'whole 30'].map(e => {return {name: e}});

@@ -1,0 +1,96 @@
+
+.conteiner{
+    background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url("./images/Fondo3.jpg");
+    background-size: cover;
+    height: 100vh;
+    color: #EAE0C8;
+}
+
+.divEntero{
+    display: flex;
+    justify-content: center;
+    position: relative;
+    top: 3vh;
+}
+.conteiner2{
+        position: relative;
+        display: flex;
+        flex-direction: column;
+        justify-content: space-between;
+        text-align: justify;
+        font-size: 20px;
+        width: 800px;
+        max-height: 800px;
+        border: 3px solid;
+        border-radius: 10px;
+        background-color: rgba(0, 0, 0, 0.7);
+}
+
+.divTitle{
+    display: flex;
+    justify-content: center;
+}
+
+.divTitle h2{
+    text-shadow: 0 0 20px gold;
+}
+
+.divNav{
+    border-top: 3px solid #EAE0C8;
+    border-bottom: 3px solid #EAE0C8;
+    position: relative;
+    top: 0.5vh;
+    margin-left: 10px;
+    margin-right: 10px;
+    font-size: 40px;
+    text-shadow: 0 0 20px gold;
+    background-color: rgba(0, 0, 0, 0.7);
+
+}
+
+.divNav a :hover{
+    transition: 1s;
+    color: gold;
+}
+
+.divLabel{
+    display: flex;
+    justify-content: space-between;
+    margin: 10px;
+    margin-right: 20px;
+    margin-left: 20px;
+}
+
+.divLabel option {
+    background-color: black;
+}
+
+.divLabel input, textarea{
+    background-color: #EAE0C8;
+    border: 2px solid black;
+    border-radius: 10px;
+}
+
+.divError{
+    color: red;
+    margin: 10px;
+}
+
+.divBtn{
+    display: flex;
+    justify-content: center;
+}
+
+.divBtn button{
+    max-width: 150px;
+    margin: 10px;
+    font-size: 18px;
+    color: #EAE0C8;
+    background-color: transparent;
+    border: 2px solid #EAE0C8;
+    border-radius: 10px;
+}
+
+button :hover{
+    color: gold;
+}
