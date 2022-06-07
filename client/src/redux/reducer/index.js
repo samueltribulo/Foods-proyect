@@ -1,4 +1,16 @@
-import { GET_ALL_RECIPES, GET_RECIPES_PER_DIET, SORT_NAMES, SORT_SCORE, SEARCH_BY_NAME, GET_RECIPE_DETAIL, POST_NEW_RECIPE, GET_ALL_DIETS, DELETE_ONE_RECIPE, UNMOUNT_DETAIL} from "../actions";
+import {
+    GET_ALL_RECIPES,
+    GET_RECIPES_PER_DIET,
+    SORT_NAMES,
+    SORT_SCORE,
+    SEARCH_BY_NAME,
+    GET_RECIPE_DETAIL,
+    POST_NEW_RECIPE,
+    GET_ALL_DIETS,
+    DELETE_ONE_RECIPE,
+    UNMOUNT_DETAIL,
+    CLEAN_FILTERS
+} from "../actions";
 
 const initialState = {
     recipes: [],
@@ -100,15 +112,21 @@ const rootReducer = (state = initialState, action) => {
             let filterRecipes;
             if(action.payload === 'all') return {...state, recipes: allRecipes};
             if(action.payload === 'Lowest to highest') filterRecipes = allRecipes.sort((a, b) =>{
-                return a.score - b.score;
+                return a.healthScore - b.healthScore;
             })
             else if(action.payload === 'Highest to lowest') filterRecipes = allRecipes.sort((a, b) => {
-                return b.score - a.score;
+                return b.healthScore - a.healthScore;
             })
             console.log(filterRecipes)
             return{
                 ...state,
                 recipes: filterRecipes
+            }
+        }
+        case CLEAN_FILTERS:{
+            return{
+                ...state,
+                recipes: state.recipesCopy
             }
         }
         default: return state;

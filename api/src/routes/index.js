@@ -27,19 +27,8 @@ router.post('/recipes', recipePost);
 
 
 (async () => {
-    let preDiets = ['gluten free', 'ketogenic', 'vegetarian', 'lacto vegetarian', 'ovo vegetarian', 'vegan', 'pescatarian', 'paleo', 'primal', 'low FODMAP', 'whole 30'].map(e => {return {name: e}});
     let diets = await getApiDiets();
     diets.forEach(async element => {
-        await Diet.findOrCreate({
-            where:{
-                name: element.name
-            },
-            defaults: {
-                name: element.name
-            }
-        })
-    });
-    preDiets.forEach(async element => {
         await Diet.findOrCreate({
             where:{
                 name: element.name

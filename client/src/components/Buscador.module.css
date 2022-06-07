@@ -41,3 +41,7 @@
     border: 2px solid #EAE0C8;
     border-radius: 10px;
 }
+.formConteiner input:hover{
+    background-color: #EAE0C8;
+    color:rgba(0, 0, 0, 0.7);
+}

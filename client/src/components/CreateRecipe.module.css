@@ -71,6 +71,10 @@
     border-radius: 10px;
 }
 
+.divLabel option {
+    background-color: #EAE0C8;
+}
+
 .divError{
     color: red;
     margin: 10px;
@@ -81,7 +85,7 @@
     justify-content: center;
 }
 
-.divBtn button{
+.divBtn input{
     max-width: 150px;
     margin: 10px;
     font-size: 18px;
@@ -91,6 +95,8 @@
     border-radius: 10px;
 }
 
-button :hover{
-    color: gold;
+.divBtn input:hover{
+    background-color: #EAE0C8;
+    color: black;
 }
+

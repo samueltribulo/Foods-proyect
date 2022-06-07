@@ -171,7 +171,7 @@ export default function CreateRecipe(){
                     {errors.diet && (<div>{errors.diet}</div>)}
                     </div>
                     <div className={styles.divBtn}>
-                        <button >Create recipe</button>
+                        <input type="submit" value='Create recipe'/>
                     </div>
                 </form>
             </div>

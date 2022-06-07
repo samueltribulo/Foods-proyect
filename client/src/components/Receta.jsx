@@ -22,6 +22,7 @@ export default function RecetaCard(props){
             </div>
         )       
     }else{
+        console.log(props)
         return(
             <div className={styles.divRecetaCard}>
                 <img src={props.image} alt="" />
@@ -32,8 +33,8 @@ export default function RecetaCard(props){
                     <label>Diets: </label>
                     <span>{`${props.diets.join(', ')}.`}</span>
                     <br />
-                    <label >Score: </label>
-                    <span>{props.score}</span>
+                    <label >Health Score: </label>
+                    <span>{props.healthScore}</span>
                 </div>
             </div>
         )

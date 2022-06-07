@@ -5,6 +5,8 @@ import { getRecipeDetail, deleteRecipe, unmountDetail} from "../redux/actions";
 import Nav from './Nav';
 import styles from './RecipeDetail.module.css'
 import {unmountComponentAtNode} from 'react-dom'
+import Loading from "./Loading";
+import { useState } from "react";
 
 
 export default function RecipeDetail (props){
@@ -12,6 +14,7 @@ export default function RecipeDetail (props){
     const dispatch = useDispatch()
     const recipe = useSelector(state => state.recipeDetail);
     let {id} = useParams();
+    const [loading, setLoading] = useState(false);
     const deleteOneRecipe = () => {
         if(window.confirm('Desea eliminar la receta?') === true){
             dispatch(deleteRecipe(id));
@@ -21,9 +24,14 @@ export default function RecipeDetail (props){
             alert('cancelado.')
         }
     }
+    const getRecipeDetail2 = async () => {
+        setLoading(true);
+        await dispatch(getRecipeDetail(id));
+        setLoading(false);
+    }
     console.log(recipe)
     useEffect(() => {
-        dispatch(getRecipeDetail(id));
+        getRecipeDetail2()
         return () => {
             dispatch(unmountDetail());
         }
@@ -35,7 +43,7 @@ export default function RecipeDetail (props){
                 <Nav></Nav>
             </div>
             <div className={styles.conteiner2}>
-                <div className={styles.conteiner3}>
+                {loading ? <div className={styles.conteiner3}><Loading></Loading></div> : <div className={styles.conteiner3}>
                     <div className={styles.conteinerDelete}>
                         {recipe.createdInDb && <button className={styles.btnDelete} onClick={deleteOneRecipe}>Delete recipe</button>}
                     </div>
@@ -46,11 +54,7 @@ export default function RecipeDetail (props){
                             <img src={recipe.image} alt="No tiene imagen" />
                             <div className={styles.details}>
                                 <div>
-                                    <label >Score:</label>
-                                    <span> {` ${recipe.score}.`}</span>
-                                </div>
-                                <div>
-                                    <label >health:</label>
+                                    <label >Health score: </label>
                                     <span>{`${recipe.healthScore}.`}</span>
                                 </div>
                                 <div>
@@ -77,14 +81,13 @@ export default function RecipeDetail (props){
                                     <div >{recipe.instructions}</div>
                                     :
                                     <span>
-                                        
-                                        {recipe.instructions ? ` ${recipe.instructions.steps.map(e => ` ${e.step}`)}` : `The recipe has no instructions.` }
+                                        {recipe.instructions ? ` ${recipe.instructions.steps.map(e => ` ${e.step}`)}` : `This recipe has no instructions.` }
                                     </span>
                                     
                                 }
                             </div>
                         </div>
-                </div>
+                </div>}
             </div>
         </div>
     )

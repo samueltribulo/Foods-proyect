@@ -2,10 +2,14 @@ import React, {useEffect, useState}from "react";
 import Nav from "./Nav";
 import {useDispatch, useSelector} from 'react-redux';
 import styles from './Buscador.module.css';
-
+import { useNavigate } from "react-router-dom";
 
 export default function Buscador ({filtePerRecipe, sortNamesFunc, sortScoreFunc, onSearchFunc}){
     const [recipe, setRecipe] = useState('');
+    const navigate = useNavigate();
+    const cleanFilters = () => {
+        navigate('/recipes');
+    }
     return(
         <div className={styles.conteiner}>
             <div className={styles.divNav}>
@@ -29,7 +33,7 @@ export default function Buscador ({filtePerRecipe, sortNamesFunc, sortScoreFunc,
                     <input type="submit" value='Search'/>
                 </form>
                 <select name="rate order" onChange={(e) => sortScoreFunc(e)}>
-                    <option value="all">Score order</option>
+                    <option value="all">Health Score order</option>
                     <option value="Highest to lowest">Highest to lowest</option>
                     <option value="Lowest to highest">Lowest to highest</option>
                 </select>
@@ -46,17 +50,15 @@ export default function Buscador ({filtePerRecipe, sortNamesFunc, sortScoreFunc,
                     <option value="lacto ovo vegetarian">Lacto ovo vegetarian</option>
                     <option value="paleolithic">Paleolithic</option>
                     <option value="primal">Primal</option>
-                    <option value="pescetarian">Pescetarian</option>
                     <option value="pescatarian">Pescatarian</option>
                     <option value="fodmap friendly">Fodmap friendly</option>
                     <option value="whole 30">Whole 30</option>
                     <option value="ketogenic">Ketogenic</option>
-                    <option value="vegetarian">Vegetarian</option>
-                    <option value="lacto vegetarian">Lacto vegetarian</option>
-                    <option value="ovo vegetarian">Ovo vegetarian</option>
-                    <option value="paleo">Paleo</option>
-                    <option value="low FODMAP">Low FODMAP</option>
                 </select>
+
+                <form className={styles.formConteiner} onSubmit={cleanFilters}>
+                    <input type="submit" value='Clean filters'/>
+                </form>
             </div>
             
         </div>

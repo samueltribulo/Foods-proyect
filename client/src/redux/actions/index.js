@@ -9,11 +9,13 @@ export const POST_NEW_RECIPE = 'POST_NEW_RECIPE';
 export const GET_ALL_DIETS = 'GET_ALL_DIETS';
 export const DELETE_ONE_RECIPE = 'DELETE_ONE_RECIPE';
 export const UNMOUNT_DETAIL = 'UNMOUNT_DETAIL';
+export const CLEAN_FILTERS = "CLEAN_FILTERS";
 
 
 export const getAllRecipes = () => { 
     return async (dispatch) => {
     let res = await axios('http://localhost:3002/recipes')
+    console.log(res.data)
     return dispatch({
         type: GET_ALL_RECIPES,
         payload: res.data,
@@ -95,6 +97,12 @@ export const onSearch = (name) => {
     return {
         type: SEARCH_BY_NAME,
         payload: name
+    }
+}
+
+export const cleanFilters = () => {
+    return {
+        type: CLEAN_FILTERS,
     }
 }
 
