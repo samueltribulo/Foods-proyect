@@ -18,7 +18,7 @@ export default  function Recetas(props){
     const currentRecipes = allRecipes.slice(indexOfFirstRecipe, indexOfLastRecipe);
     const [reRender, setReRender] = useState('');
     const [loading, setLoading] = useState(false);
-
+    const [currentNumber, setCurrentNumber] = useState(1);
 
     const paginado = (number) => setCurrentPage(number);
 
@@ -27,6 +27,7 @@ export default  function Recetas(props){
         await dispatch(getRecipesPerDiet(e.target.value));
         setReRender(`Ultimo ordenamiento ${e.target.value}`);
         setLoading(false);
+        setCurrentNumber(1)
         setCurrentPage(1);
     }
 
@@ -34,12 +35,14 @@ export default  function Recetas(props){
         setLoading(true);
         await dispatch(sortNames(e.target.value));
         setLoading(false);
+        setCurrentNumber(1);
         setCurrentPage(1);
         setReRender(`Ultimo ordenamiento ${e.target.value}`);
     }
 
     const sortScoreFunc = async (e) => {
         dispatch(sortScore(e.target.value));
+        setCurrentNumber(1);
         setCurrentPage(1);
         setReRender(`Ultimo ordenamiento ${e.target.value}`);
     }
@@ -47,18 +50,21 @@ export default  function Recetas(props){
     const onSearchFunc = async (recipe) => {
         setLoading(true);
         await dispatch(onSearch(recipe));
-        setLoading(false)
+        setLoading(false);
+        setCurrentNumber(1);
         setCurrentPage(1);
         setReRender(`Ultimo ordenamiento ${recipe}`)
     }
 
     const getAllRecipes2 = async () => {
-        setLoading(true)
+        setLoading(true);
         await dispatch(getAllRecipes());
-        setLoading(false)
+        setCurrentNumber(1);
+        setLoading(false);
     }
     const cleanFilters2 = async (e) => {
         await dispatch(cleanFilters());
+        setCurrentNumber(1);
         setCurrentPage(1);
         setReRender(`Ultimo ordenamiento ${e.target.value}`);
     }
@@ -72,7 +78,7 @@ export default  function Recetas(props){
                     <Buscador cleanFilters2={cleanFilters2} onSearchFunc={onSearchFunc} sortScoreFunc={sortScoreFunc} sortNamesFunc={sortNamesFunc} filtePerRecipe={filtePerRecipe}></Buscador>
                 </div> 
                 <div className={styles.divPagination}>
-                    <Pagination currentPage={currentPage} paginado={paginado} allRecipes= {allRecipes.length} recipesPerPage={recipesPerPage}></Pagination>
+                    <Pagination currentNumber={currentNumber} setCurrentNumber={setCurrentNumber} currentPage={currentPage} paginado={paginado} allRecipes= {allRecipes.length} recipesPerPage={recipesPerPage}></Pagination>
                 </div>
                 {loading ? <div className={styles.conteiner2}>
                     <Loading />

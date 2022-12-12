@@ -27,7 +27,10 @@
     border: 2px solid #EAE0C8;
     border-radius: 10px;
 }
-
+.btnDelete:hover{
+    background-color: #EAE0C8;
+    color:rgba(0, 0, 0, 0.7);
+}
 .conteiner{
     background: linear-gradient(rgba(0, 0, 0, 0.6), rgba(0, 0, 0, 0.5)), url("./images/Fondo2.jpg");
     background-size: cover;

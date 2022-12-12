@@ -5,7 +5,7 @@ import styles from "./Nav.module.css"
 export default function Nav (){
     return (
         <div className={styles.divNav}>
-            <NavLink to={`/`}> 
+            <NavLink to={`/recipes`}> 
                 <span className={styles.spansCreateAndHome}>Home</span>
             </NavLink>
             <NavLink to={`/recipe/create`}>

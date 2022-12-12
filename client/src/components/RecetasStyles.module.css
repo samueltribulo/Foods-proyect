@@ -26,6 +26,21 @@
     border-top: 3px solid #EAE0C8;
 }
 
+.conteiner2::-webkit-scrollbar{
+    width: 12px;  
+}
+
+.conteiner2::-webkit-scrollbar{
+    background: transparent;
+    
+}
+
+.conteiner2::-webkit-scrollbar-thumb{
+    background-color: #EAE0C8;    /* color of the scroll thumb */
+    border-radius: 20px;       /* roundness of the scroll thumb */
+    border: 3px solid #EAE0C8;
+}
+
 .Buscador{
     position: relative;
 }

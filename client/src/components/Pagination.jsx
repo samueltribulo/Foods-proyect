@@ -1,9 +1,8 @@
 import React, { useState } from 'react';
 import styles from './Pagination.module.css'
 
-export default function Pagination ({paginado, recipesPerPage, allRecipes, currentPage}){
+export default function Pagination ({paginado, recipesPerPage, allRecipes,currentNumber, setCurrentNumber}){
     const pageNumbers = [];
-    const [currentNumber, setCurrentNumber] = useState(null);
 
     for (let i = 0; i < Math.ceil(allRecipes/recipesPerPage); i++) {
         pageNumbers.push(i+1);

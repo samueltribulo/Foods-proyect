@@ -22,6 +22,11 @@
     border-radius: 10px;
 }
 
+.btnRecargar:hover{
+    background-color: #EAE0C8;
+    color:rgba(0, 0, 0, 0.7);
+}
+
 a{
     text-decoration: none;
     color: #EAE0C8;

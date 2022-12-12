@@ -11,7 +11,7 @@ function validate (input){
     else if(!input.score) errors.score = 'Please enter a score.';
     else if(Number(input.score) > 100 || Number(input.score) < 1 || ! Number.isInteger(Number(input.score)) && typeof input.score != 'number') errors.score = 'The score must be an integer number from 1 to 100';
     else if(!input.healthScore) errors.healthScore = 'Please enter a healthScore';
-    else if(Number(input.healthScore) > 100 || Number(input.healthScore) < 1 ) errors.healthScore = 'The health score must be a number from 1 to 100';
+    else if(Number(input.healthScore) > 100 || Number(input.healthScore) < 1 || isNaN(input.healthScore)) errors.healthScore = 'The health score must be a number from 1 to 100';
     else if(!input.summary) errors.summary = 'Please enter a summary';
     else if(input.summary.length < 40) errors.summary = 'The summary must be at least 40 characters';
     else if(!input.instructions) errors.instructions = 'Please enter instructions';
@@ -101,7 +101,7 @@ export default function CreateRecipe(){
     return(
         <div className={styles.conteiner}>
             <div className={styles.divNav}>
-                <NavLink to={'/recipes'}>Back</NavLink>
+                <NavLink to={'/recipes'}>Back home</NavLink>
             </div>
             <div className={styles.divEntero}>
                 <form className={styles.conteiner2} onSubmit={(e) => handleSubmit(e)} >
